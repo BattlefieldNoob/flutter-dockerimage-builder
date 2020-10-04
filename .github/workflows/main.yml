@@ -1,9 +1,9 @@
 name: DockerImageBuilder
 
-on: push
-#  push:
-#    tags:
-#     - "*"
+on:
+  push:
+    tags:
+     - "*"
 
 jobs:
   build:
@@ -12,18 +12,23 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: GitHub Script
-      run: echo Hello world ${{github.event.push}} $GITHUB_REF
-    #- name: Build and push Docker images
-    #  uses: zvfvrv/docker-bpgpr@v1.0.1
-    #  with:
-    #    # Password or personal access token used to log in to a Docker registry. If not set then no login will occur
-    #    gh_token: ${{ secrets.TOKEN_GH }}
-    #    # Image name
-    #    image_name: flutter-web
+    - name: Get tag
+      id: tag
+      uses: dawidd6/action-get-tag@v1
+      
+    - name: Print Tag
+      run: echo ${{steps.tag.outputs.tag}}
+    
+    - name: Build and push Docker images
+      uses: zvfvrv/docker-bpgpr@v1.0.1
+      with:
+        # Password or personal access token used to log in to a Docker registry. If not set then no login will occur
+        gh_token: ${{ secrets.TOKEN_GH }}
+        # Image name
+        image_name: flutter-web
         # Automatically tags the built image with the git reference as per the readme
-    #    tag_with_ref: true
+        tag_with_ref: true
         # Comma-delimited list of build-time variables
-    #    build_args: flutter_version=github.ref
+        build_args: flutter_version=${{steps.tag.outputs.tag}}
 
 
