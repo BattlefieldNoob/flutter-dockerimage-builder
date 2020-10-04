@@ -20,9 +20,7 @@ jobs:
       run: echo ${{steps.tag.outputs.tag}}
     
     - name: Build and push Docker images
-      # You may pin to the exact commit or the version.
-      # uses: craftech-io/package-action@009001a7fd1c4f139ae06aeceed9b679daf52734
-      uses: craftech-io/package-action@v3.1.0
+      uses: BattlefieldNoob/package-action@v3.2.0
       with:
         # GitHub Repository Token to log in using.
         access_token: ${{ secrets.TOKEN_GH }}
