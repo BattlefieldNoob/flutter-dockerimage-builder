@@ -12,16 +12,21 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: Build and push Docker images
-      uses: zvfvrv/docker-bpgpr@v1.0.1
+    - name: GitHub Script
+      uses: actions/github-script@v3.0.0
       with:
-        # Password or personal access token used to log in to a Docker registry. If not set then no login will occur
-        gh_token: ${{ secrets.TOKEN_GH }}
-        # Image name
-        image_name: flutter-web
+        # The script to run
+        script: echo  ${{github.event.push}}
+    #- name: Build and push Docker images
+    #  uses: zvfvrv/docker-bpgpr@v1.0.1
+    #  with:
+    #    # Password or personal access token used to log in to a Docker registry. If not set then no login will occur
+    #    gh_token: ${{ secrets.TOKEN_GH }}
+    #    # Image name
+    #    image_name: flutter-web
         # Automatically tags the built image with the git reference as per the readme
-        tag_with_ref: true
+    #    tag_with_ref: true
         # Comma-delimited list of build-time variables
-        build_args: flutter_version=github.ref
+    #    build_args: flutter_version=github.ref
 
 
