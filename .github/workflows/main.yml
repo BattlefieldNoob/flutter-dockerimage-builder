@@ -13,7 +13,7 @@ jobs:
     - uses: actions/checkout@v1
 
     - name: GitHub Script
-      run: echo Hello world ${{github.event.push}}
+      run: echo Hello world ${{github.event.push}} $GITHUB_REF
     #- name: Build and push Docker images
     #  uses: zvfvrv/docker-bpgpr@v1.0.1
     #  with:
