@@ -22,6 +22,6 @@ jobs:
         # Automatically tags the built image with the git reference as per the readme
         tag_with_ref: true
         # Comma-delimited list of build-time variables
-        build_args: flutter_version=${{ github.ref }}
+        build_args: flutter_version=github.ref
 
 
