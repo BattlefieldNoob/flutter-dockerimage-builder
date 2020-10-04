@@ -4,7 +4,7 @@ USER root
 
 ARG flutter_version
 
-ENV FLUTTER_HOME=${HOME}/sdks/flutter \
+ENV FLUTTER_HOME=~/flutter \
     FLUTTER_VERSION=$flutter_version
 ENV FLUTTER_ROOT=$FLUTTER_HOME
 
