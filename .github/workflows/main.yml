@@ -20,7 +20,7 @@ jobs:
       run: echo ${{steps.tag.outputs.tag}}
     
     - name: Build and push Docker images
-      uses: zvfvrv/docker-bpgpr@v1.0.1
+      uses: BattlefieldNoob/docker-build-and-push@v1.2
       with:
         # Password or personal access token used to log in to a Docker registry. If not set then no login will occur
         gh_token: ${{ secrets.TOKEN_GH }}
