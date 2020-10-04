@@ -1,6 +1,9 @@
 name: DockerImageBuilder
 
-on: push
+on: 
+  push:
+    tags:
+      - "*"
 
 jobs:
   build:
@@ -8,5 +11,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: "Hello"
-      run: echo "hello!"
+
+    - name: Build and push Docker images
+      uses: zvfvrv/docker-bpgpr@v1.0.1
+      with:
+        # Password or personal access token used to log in to a Docker registry. If not set then no login will occur
+        gh_token: ${{ secrets.TOKEN_GH }}
+        # Image name
+        image_name: flutter-web
+        # Automatically tags the built image with the git reference as per the readme
+        tag_with_ref: true
+        # Comma-delimited list of build-time variables
+        build_args: FLUTTER_VERSION=${{ github.ref }}
+
+
