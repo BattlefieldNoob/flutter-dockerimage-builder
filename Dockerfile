@@ -4,6 +4,8 @@ USER root
 
 ARG flutter_version
 
+ARG DEBIAN_FRONTEND=noninteractive
+
 ENV FLUTTER_HOME=/sdks/flutter
 
 RUN echo "version $flutter_version"
@@ -15,7 +17,7 @@ ENV FLUTTER_ROOT=$FLUTTER_HOME
 ENV PATH ${PATH}:${FLUTTER_HOME}/bin:${FLUTTER_HOME}/bin/cache/dart-sdk/bin
 
 RUN apt update \
-    && apt -y install git curl unzip rsync xz-utils \
+    && apt -y install git curl unzip rsync xz-utils npm \
     && apt clean autoclean \
     && apt autoremove --yes \
     && rm -rf /var/lib/apt/lists/* \
@@ -24,6 +26,7 @@ RUN apt update \
     && rm -rf /var/lib/dpkg/* \
     && rm -rf /var/lib/apt/* 
 
+RUN npm install -g npx
 
 RUN git clone --branch ${FLUTTER_VERSION} https://github.com/flutter/flutter.git ${FLUTTER_HOME}
 
