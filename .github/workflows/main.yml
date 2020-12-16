@@ -30,6 +30,7 @@ jobs:
         # The desired tag for the image. Defaults to latest. Optionally accepts multiple tags separated by newline.
         tag: |
           ${{steps.tag.outputs.tag}}
+          latest
         # Any additional build arguments to use when building the image, separated by newline.
         buildArgs: |
           flutter_version=${{steps.tag.outputs.tag}}
